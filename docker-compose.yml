@@ -1,0 +1,39 @@
+
+services:
+  # Servidor Web y PHP
+  web:
+    image: php:8.2-apache
+    container_name: dwes_servidor
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    restart: always
+
+  # Sistema Gestor de Base de Datos
+  db:
+    image: mariadb:10.11
+    container_name: dwes_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: dwes_db
+      MYSQL_USER: dwes_user
+      MYSQL_PASSWORD: dwes_password
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+  # Interfaz gráfica para la BD
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    platform: linux/amd64
+    container_name: dwes_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+
+volumes:
+  db_data:
