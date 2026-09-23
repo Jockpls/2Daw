@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>03 · defer</title>
+  <link rel="stylesheet" href="estilo-ejemplos.css">
+
+  <!-- El mismo titulo.js, y el <script> vuelve al <head>, ahora con defer:
+       empieza a descargarse EN CUANTO el navegador ve esta línea,
+       en paralelo mientras sigue leyendo el HTML,
+       y se ejecuta cuando el documento ya está parseado. -->
+  <script defer src="titulo.js"></script>
+</head>
+<body>
+  <h1 id="titulo">Título original</h1>
+
+  <div class="aviso">
+    <p>Funciona igual que el 02, pero el archivo se ha descargado <strong>mientras</strong>
+       el navegador leía el HTML, en vez de después.</p>
+    <p>Para verlo: pestaña <strong>Network</strong>, marca <em>Disable cache</em>, recarga,
+       y compara con el ejemplo 02 dónde empieza la barra de <code>titulo.js</code>.</p>
+  </div>
+</body>
+</html>
