@@ -37,6 +37,7 @@ JavaScript (JS) es un lenguaje de programación interpretado, ligero y multiplat
 
 1. **Instala Visual Studio Code**  
    Descarga e instala VS Code desde [code.visualstudio.com](https://code.visualstudio.com/).
+   ![InstalacionIde](./instalacionvsc.png)
 
 ## Parte 2: Primeros pasos con la consola del navegador
 
@@ -50,6 +51,7 @@ JavaScript (JS) es un lenguaje de programación interpretado, ligero y multiplat
    let nombre = "Anita"
    nombre
    ```
+  ![InstalacionIde](./pruebasenconsola.png)
 
 ## Parte 3: Tu primer archivo HTML + JavaScript
 
@@ -74,6 +76,8 @@ JavaScript (JS) es un lenguaje de programación interpretado, ligero y multiplat
    ```
 4. Desde VSCode abre el archivo `hola.html` en tu navegador.
 5. Observa el resultado en la consola del navegador.
+
+![InstalacionIde](./pruebaconsolahtml.png)
 
 ## Parte 4: Experimenta
 
