@@ -149,14 +149,42 @@ JavaScript (JS) es un lenguaje de programación interpretado, ligero y multiplat
 ## Parte 6: Preguntas de reflexión
 
 1. ¿Qué hace `console.log`?
+  - Muestra en la consola del navegador alguna variable.
+
 2. ¿Qué ocurre si cambias el valor de la variable desde la consola? ¿Se puede?
+  - Desde la consola se puede cambiar, aunque no modificará el archivo original.
+
 3. ¿Para qué sirve la consola del navegador en este contexto?
+  - Sirve para debbugear y hacer pruebas sobre el código sin necesidad de acceder a este, cambiar variables o probar funciones, por ejemplo.
+
 4. Para qué sirve el archivo HTML en este contexto?
+  - Para formatear la página y mostrar los elementos con los que interactua el código JavaScript.
+
 5. ¿Por qué es una buena práctica separar el código JavaScript del HTML?
+  - Para encapsularlo, por seguridad y rendimiento de la propia página, así el navegador no tiene que parar a cargar todas las líneas de script que le incrustemos.
+
 6. Por qué se llama Vanilla JavaScript?
+  - Se llama así porque es el original, sin ninguna extensión ni plugin que lo modifique.
+
 7. Cuándo se usa JavaScript puro y cuándo se usan frameworks o librerías como REACT?
+  - Depende de las necesidades de cada proyecto, para hacer ciertas dinámicas sencillas o algún código ligero, no es necesario instalar un framework completo y sus librerías. </br>En el caso de querer hacer un proyecto más profesional y complejo, por ejemplo siguiendo el modelo vista-controlador, son una gran ayuda ya que nos brindan una enorme cantidad de herramientas nuevas que usar de manera estandar.
+
 8. Cómo se define una función en JS
+  - function nombre(){}
+
 9. Sobre el código demuestra la diferencia entre let y const
+  - La diferencia sobre let y const es que let declara una variable mutable, mientras que const será un valor inmutable, en la imagen podemos observar que al intentar cambiar el valor de b la consola nos devuelve un TypeError, ya que no se puede modificar su valor.
+
+  ![Diferencialetconst](./Images/Diferencialetconst.png)
+
+
 10. Indica en el código:
-   1. Si puede evitarse el uso de let. Qué hace
-   2. Cuántos eventos hay en el código, cuáles son y para qué sirven
+  1. Si puede evitarse el uso de let. Qué hace
+  - Si no se usa let, el ambito de esa variable será global, por lo que hay que tener cuidado con qué funciones, métodos u objetos la usan.
+
+  2. Cuántos eventos hay en el código, cuáles son y para qué sirven
+  - En el código encontramos 2 eventos:
+    - DOMContentLoaded
+    Permite usar el script en la página una vez que el fichero HTML haya sido cargado por completo.
+    - Submit
+    Submit se activa cuando el usuario intenta enviar el formulario y recoge los datos de los campos para que puedan ser usados en la función.
