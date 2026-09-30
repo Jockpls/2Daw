@@ -1,6 +1,3 @@
-/// <reference path="./global.d.ts" />
-// @ts-check
-
 ## Task 1
 /**
  * Creates a new visitor.
