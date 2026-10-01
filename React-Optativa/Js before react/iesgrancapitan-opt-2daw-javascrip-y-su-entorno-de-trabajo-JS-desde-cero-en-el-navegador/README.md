@@ -170,7 +170,11 @@ JavaScript (JS) es un lenguaje de programación interpretado, ligero y multiplat
   - Depende de las necesidades de cada proyecto, para hacer ciertas dinámicas sencillas o algún código ligero, no es necesario instalar un framework completo y sus librerías. </br>En el caso de querer hacer un proyecto más profesional y complejo, por ejemplo siguiendo el modelo vista-controlador, son una gran ayuda ya que nos brindan una enorme cantidad de herramientas nuevas que usar de manera estandar.
 
 8. Cómo se define una función en JS
+  Función clásica:
   - function nombre(){}
+  
+  Arrow function:
+  - const f2 = () => console.log(11)
 
 9. Sobre el código demuestra la diferencia entre let y const
   - La diferencia sobre let y const es que let declara una variable mutable, mientras que const será un valor inmutable, en la imagen podemos observar que al intentar cambiar el valor de b la consola nos devuelve un TypeError, ya que no se puede modificar su valor.
