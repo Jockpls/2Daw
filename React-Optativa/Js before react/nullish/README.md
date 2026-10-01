@@ -1,3 +1,5 @@
+# Nullish, Truthy y Falsy, por Jose Carlos Díaz
+
 ## Task 1
 /**
  * Creates a new visitor.
