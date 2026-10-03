@@ -67,5 +67,9 @@ console.log("Contador con Reduce", contadorReduce);
 //Obtener el total de las distancias que superan los 6 km.
 
 let cont = 0;
-
-console.log();
+    for (let i = 0; i < kilometros.length; i++){
+        if (kilometros[i] > 6 ) {
+            cont += kilometros[i]        
+        }
+    }
+console.log("La suma total de los kilometros es", cont);
