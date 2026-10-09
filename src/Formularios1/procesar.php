@@ -8,15 +8,18 @@
     function escapar(string $texto): string {
         return htmlspecialchars($texto, ENT_QUOTES, "UTF-8");
     }
-    
+//Definimos variables
     $errores = [];
     $nombre = "";
     $email = "";
     $edad = false;
+
+
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $nombre = recibirTexto("nombre");
+        $nombre = recibirTexto("nombre"); //recibir texto está recibiendo el valor del formulario
         $email = recibirTexto("email");
         $edadTexto = recibirTexto("edad");
+        
         if ($nombre === "") {
             $errores[] = "El nombre es obligatorio.";
         }
