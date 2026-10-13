@@ -38,3 +38,32 @@
         $errores[] = "Debes acceder enviando el formulario.";
     }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+         <meta charset="UTF-8">
+         <title>Resultado de la inscripción</title>
+    </head>
+    <body>
+        <?php if (count($errores) > 0): ?>
+            <h1>No se ha podido completar la inscripción</h1>
+            <ul>
+                <?php foreach ($errores as $error): ?>
+                    <li><?= escapar($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <h1>Inscripción recibida</h1>
+            <p>Hola, <?= escapar($nombre) ?>.</p>
+            <p>Correo: <?= escapar($email) ?></p>
+            <p>Edad: <?= $edad ?> años.</p>
+                <?php if ($edad < 18): ?>
+                    <p>Para este taller necesitarás autorización
+                    de tu tutor legal.</p>
+                <?php else: ?>
+                    <p>Puedes participar sin autorización adicional.</p>
+            <?php endif; ?>
+        <?php endif; ?>
+        <p><a href="formulario.html">Volver al formulario</a></p>
+    </body>
+</html>
