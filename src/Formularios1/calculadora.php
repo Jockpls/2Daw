@@ -22,8 +22,14 @@
                 break;
 
             case "Divd":
-                $num3 = $num1 / $num2;
+                if ($num2 == 0){
+                    $Divby0 = "No se puede dividir entre 0.";
+                    $num3 = NULL;
+                    break;
+                } else
+                {$num3 = $num1 / $num2;
                 break;
+                };
         }
     }
 ?>
@@ -36,6 +42,6 @@
 </head>
 <body>
     <h1>RESULTADEITORRR</h1>
-    <p>El resultado de la operación es <?=$num3?></p>
+    <p><?= $num3 == true ? "El resultado de la operación es $num3" : $Divby0; ?></p>
 </body>
 </html>
