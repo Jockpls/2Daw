@@ -65,5 +65,35 @@ console.log("El festival dura:", totalMinutos, "minutos");
 const cartelAOrdenar = [...cartel];
 cartelAOrdenar.sort((a, b) => b.minutos() - a.minutos());
 
+console.table(cartelAOrdenar.map(grupo => grupo.ficha()));
+
+
+//Desestructurar pot posición
+//const [primero, segundo, tercero ] = ["María", "Antonio", "Carmen"]
+//const [primero, segundo ] = ["María", "Antonio", "Carmen"]
+
+const [primero, segundo] = cartelAOrdenar; 
+console.log("Actuación más larga", primero.ficha());
+console.log("Segunda actuación más larga", segundo.ficha());
+
+
+///Comprobar más de 30 minutos
+console.log("¿Pasan todos de media hora?", cartel.every(g => g.minutos() > 30));
+
+console.groupEnd();
+
+//Guardar CARTEL.
+console.group("GUARDAR");
+
+const paraGuardar = cartel.map(g => ({nombre: g.nombre(), minutos: g.minutos()}))
+
+const texto = JSON.stringify(paraGuardar); //Conversión a texto
+console.log("A texto: ", texto);
+
+const recuperado = JSON.parse(texto); //Conversión a objeto
+console.log("Recuperado: ", recuperado);
+
+
+
 console.groupEnd();
 
