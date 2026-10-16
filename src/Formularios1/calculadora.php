@@ -11,6 +11,33 @@
         return is_numeric($valor) ? $valor + 0 : null;
     }
     
+    function operacion(float $num1, float $num2, $ope): float{
+        switch ($ope){
+                    case "Sum":
+                        $num3 = $num1 + $num2;
+                        return $num3;
+                        break;
+
+                    case "Rest":
+                        return $num3 = $num1 - $num2;
+                        break;
+
+                    case "Mult":
+                        return $num3 = $num1 * $num2;
+                        break;
+
+                    case "Divd":
+                        if ($num2 == 0){
+                            return $Divby0 = "No se puede dividir entre 0.";
+                            return $num3 = NULL;
+                            break;
+                        } else {
+                            return $num3 = $num1 / $num2;
+                        break;
+                        };
+                };           //alert para lanzar una alerta en el navegador con un mensaje concreto.
+    }
+
     $num1 = "";
     $num2 = "";
     $ope = "";
@@ -20,29 +47,7 @@
         $num2 = comprobarNumero("num2");
         $ope = $_POST["ope"];
         if ($num1 != null && $num2 != null){
-            switch ($ope){
-                    case "Sum":
-                        $num3 = $num1 + $num2;
-                        break;
-
-                    case "Rest":
-                        $num3 = $num1 - $num2;
-                        break;
-
-                    case "Mult":
-                        $num3 = $num1 * $num2;
-                        break;
-
-                    case "Divd":
-                        if ($num2 == 0){
-                            $Divby0 = "No se puede dividir entre 0.";
-                            $num3 = NULL;
-                            break;
-                        } else
-                        {$num3 = $num1 / $num2;
-                        break;
-                        };
-                }           //alert para lanzar una alerta en el navegador con un mensaje concreto.
+            $num3 = operacion($num1, $num2, $ope);
         } else {echo "<script>
                         alert('Valores no validos');
                         window.location.href = 'calculadora.html';    

@@ -9,16 +9,15 @@
             foreach ($campo as $i) {
                 if (is_numeric($i) && ($i >= 0 && $i <= 10)){
                     $contador++;}
-            
+                    }
             if ($contador === 3){
-                    $valor = $_POST[$campo];
+                    return $valor = $campo;
             } else {
                 echo "<script>
                         alert('Error, campos incorrectos, inténtelo de nuevo.');
                         window.location.href = 'notas.html';
                     </script>";}    
-    }
-    }
+        }
     
     function calcularMedia(array $Notas): float{
         $suma = 0;
@@ -45,7 +44,6 @@
         } else{
             return sprintf("Valores incorrectos.");
         }
-        
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
