@@ -48,19 +48,26 @@
           </table>
         </p>
         <a>
-            <label for="bocadillo">Bocadillos</label>
-            <select id="bocadillo">
-                <option value="Tortilla">Tortilla</option>
-                <option value="Pollo">Pollo</option>
-                <option value="Vegetal">Vegetal de callos</option>
-                <option value="Queso(Extra)">Queso(Extra)</option>
-                <option value="Tomate(Extra)">Tomate(Extra)</option>
-                <option value="Salsa(Extra)">Salsa(Extra)</option>
+            <label for="tipo">Bocadillos</label>
+            <select id="tipo">
+                <option value="tortilla">Tortilla</option>
+                <option value="pollo">Pollo</option>
+                <option value="vegetal">Vegetal de callos</option>
             </select>
-        </a>
-        <a>
-            <label for="Cantidad">Cantidad</label>
-            <input type="number" min="0" max="10" id="Cantidad" name="Cantidad" required>
+            <a>
+                <label for="Cantidad">Cantidad</label>
+                <input type="number" min="0" max="10" id="Cantidad" name="Cantidad" required>
+            </a>
+            <p>Extras (se aplican a cada unidad):</p>
+            <label>
+                <input type="checkbox" name="extras[]" value="queso"> Queso (0,50 €)
+            </label><br>
+            <label>
+                <input type="checkbox" name="extras[]" value="tomate"> Tomate (0,30 €)
+            </label><br>
+            <label>
+                <input type="checkbox" name="extras[]" value="salsa"> Salsa (0,20 €)
+            </label>
         </a>
         <p>
             <button type="submit">Enviar pedido</button>
