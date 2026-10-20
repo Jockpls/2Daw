@@ -1,4 +1,8 @@
 <?php
+    function comprobarString(string $nombre): string {
+        $valor = $_POST[$nombre] ?? "";
+        return is_string($valor) ? $valor : ""; 
+    }
 
     function obtenerPrecioBocadillo(string $tipo): float{
         $precios= array(
@@ -12,26 +16,36 @@
                 return $precioBase;
         }
     
+    function comprobarExtras(string $extras): array{
+    if (isset($_POST[$extras])){    
+        $valor = $_POST[$extras];
+        return $valor;
+    } else {
+        die;
+    }
+    }
+
     function calcularPrecioExtras(array $extras): float{
         $precios = array(
             "queso" => 0.50,
             "tomate" => 0.30,
             "salsa" => 0.20,
             );
+
         $precioExtras = 0;
         foreach($extras as $extra){
-            if (isset($precios[$extra])){
                 $precioExtras += $precios[$extra];
-                } else {
-                return -1; //Devuelve un -1 en caso de querer comprobar después
-              }
-            };
+                };
             return $precioExtras;
-        }
+            };
     
-    function validarCantidad($cantidadTexto){
-        $cantidubi = (int)$cantidadTexto;
-        return $cantidubi;
+    function validarCantidad(string $valor){
+        if ($_POST[$valor]){
+            $cantidad = (int)$_POST[$valor];
+            return $cantidad;
+        } else {
+            die;
+        };
     }
     
     function calcularTotal(float $precioBase, float $precioExtras, int $cantidad): float{
@@ -41,12 +55,10 @@
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
-        $nombre = $_POST["nombre"] ?? "";
-        $tipo = $_POST["tipo"] ?? "";
-        $extras = $_POST["extras"] ?? []; //Cómo ya llega un array no hace falta incluir los corchetes
-        $cantidadTexto = $_POST["cantidad"] ?? "";
-
-        $cantidad = validarCantidad($cantidadTexto);
+        $nombre = comprobarString("nombre");
+        $tipo = comprobarString("tipo");
+        $cantidad = validarCantidad("cantidad");
+        $extras = comprobarExtras("extras"); //Cómo ya llega un array no hace falta incluir los corchetes
         
         $bocatas = obtenerPrecioBocadillo($tipo);
         $mejunges = calcularPrecioExtras($extras);
@@ -63,7 +75,7 @@
 </head>
 <body>
     <h1>A PAGAR<h1>
-    <a><?=$nombre . "te toca pagar " . number_format($pagamiento, 2)?></a>
+    <a><?=$nombre . " te toca pagar " . number_format($pagamiento, 2)?></a>
 
 </body>
 </html>
