@@ -49,14 +49,15 @@
         </p>
         <a>
             <label for="tipo">Bocadillos</label>
-            <select id="tipo">
+            <select id="tipo" name="tipo" required>
+                <option>Elige uno</option>
                 <option value="tortilla">Tortilla</option>
                 <option value="pollo">Pollo</option>
                 <option value="vegetal">Vegetal de callos</option>
             </select>
             <a>
-                <label for="Cantidad">Cantidad</label>
-                <input type="number" min="0" max="10" id="Cantidad" name="Cantidad" required>
+                <label for="cantidad">Cantidad</label>
+                <input type="number" min="1" max="10" id="cantidad" name="cantidad" required>
             </a>
             <p>Extras (se aplican a cada unidad):</p>
             <label>

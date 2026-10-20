@@ -6,8 +6,8 @@
             "pollo" => 4.5, 
             "vegetal"=> 4.00,    
         );
-        foreach(price as $precios => $tipo){
-                $precioBase = price;
+        foreach($precios as $price){
+                $precioBase = $price;
             };
                 return $precioBase;
         }
@@ -19,27 +19,34 @@
             "salsa" => 0.20,
             );
         $precioExtras = 0;
-        foreach($extra as $extras){
-            if (in_array($precios, $extra)){
-                $precioExtras += $extra;
+        foreach($extras as $extra){
+            if (isset($precios[$extra])){
+                $precioExtras += $precios[$extra];
                 } else {
                 return -1; //Devuelve un -1 en caso de querer comprobar después
               }
             };
             return $precioExtras;
         }
-
+    
+    function validarCantidad($cantidadTexto){
+        $cantidubi = (int)$cantidadTexto;
+        return $cantidubi;
+    }
+    
     function calcularTotal(float $precioBase, float $precioExtras, int $cantidad): float{
-            $precio = ($precioBase + $extra) * $cantidad;
+            $precio = ($precioBase + $precioExtras) * $cantidad;
             return $precio;
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
-        $nombre = $_POST("nombre");
-        $tipo = $_POST("tipo");
-        $extras = $_POST("extras[]");
-        $cantidad = $_POST("Cantidad")
+        $nombre = $_POST["nombre"] ?? "";
+        $tipo = $_POST["tipo"] ?? "";
+        $extras = $_POST["extras"] ?? []; //Cómo ya llega un array no hace falta incluir los corchetes
+        $cantidadTexto = $_POST["cantidad"] ?? "";
+
+        $cantidad = validarCantidad($cantidadTexto);
         
         $bocatas = obtenerPrecioBocadillo($tipo);
         $mejunges = calcularPrecioExtras($extras);
@@ -56,7 +63,7 @@
 </head>
 <body>
     <h1>A PAGAR<h1>
-    <a><?=$nombre . "te toca pagar " . $pagamiento?></a>
+    <a><?=$nombre . "te toca pagar " . number_format($pagamiento, 2)?></a>
 
 </body>
 </html>
