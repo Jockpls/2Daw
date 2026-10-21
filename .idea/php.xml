@@ -53,6 +53,9 @@
       </interpreter>
     </interpreters>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="9eb32190-a960-4ce9-9ab3-dc0a25791c0a" timeout="60000" />
