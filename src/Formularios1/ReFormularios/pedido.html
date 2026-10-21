@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidinchis</title>
+    <style>
+        table{border:1px solid black;}
+        td{border:1px solid black;}
+    </style>
+</head>
+<body>
+    <form action="pedido.php" method="post">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" minlength="3" maxlength="12" id="nombre" name="nombre" required>
+        </p>
+        <p>
+          <table>
+              <thead>
+                <th>Producto</th>
+                <th>Precio</th>
+            </thead>
+            <tr>
+                <td>Tortilla</td>
+                <td>3,50€</td>
+            </tr>
+            <tr>
+                <td>Pollo</td>
+                <td>4,50€</td>
+            </tr>
+            <tr>
+                <td>Vegetal</td>
+                <td>4,00€</td>
+            </tr>
+            <tr>
+                <td>Queso</td>
+                <td>0,50€</td>
+            </tr>
+            <tr>
+                <td>Tomate</td>
+                <td>0.30€</td>
+            </tr>
+            <tr>
+                <td>Salsa</td>
+                <td>0.20€</td>
+            </tr>
+          </table>
+        </p>
+        <a>
+            <label for="tipo">Bocadillos</label>
+            <select id="tipo" name="tipo" required>
+                <option>Elige uno</option>
+                <option value="tortilla">Tortilla</option>
+                <option value="pollo">Pollo</option>
+                <option value="vegetal">Vegetal de callos</option>
+            </select>
+            <a>
+                <label for="cantidad">Cantidad</label>
+                <input type="number" min="1" max="10" id="cantidad" name="cantidad" required>
+            </a>
+            <p>Extras (se aplican a cada unidad):</p>
+            <label>
+                <input type="checkbox" name="extras[]" value="queso"> Queso (0,50 €)
+            </label><br>
+            <label>
+                <input type="checkbox" name="extras[]" value="tomate"> Tomate (0,30 €)
+            </label><br>
+            <label>
+                <input type="checkbox" name="extras[]" value="salsa"> Salsa (0,20 €)
+            </label>
+        </a>
+        <p>
+            <button type="submit">Enviar pedido</button>
+        </p>
+    </form>
+</body>
+</html>

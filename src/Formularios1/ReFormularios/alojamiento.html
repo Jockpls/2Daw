@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirBNBinchi</title>
+</head>
+<body>
+
+<h2>AirBNBinchi</h2>
+
+<form action="alojamiento.php" method="POST">
+
+    <div>
+        <label for="nombre">Nombre del cliente:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
+
+    <div>
+        <label for="habitacion">Tipo de habitación:</label>
+        <select id="habitacion" name="habitacion" required>
+            <option value="">-- Seleccione --</option>
+            <option value="individual">Individual</option>
+            <option value="doble">Doble</option>
+            <option value="suite">Suite</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="noches">Número de noches (1 - 30):</label>
+        <input type="number" id="noches" name="noches" min="1" max="30" required>
+    </div>
+
+    <div>
+        <input type="checkbox" id="desayuno" name="desayuno" value="si">
+        <label for="desayuno">Incluir desayuno</label>
+    </div>
+
+    <div>
+        <button type="submit">Calcular Presupuesto</button>
+    </div>
+
+</form>
+
+</body>
+</html>

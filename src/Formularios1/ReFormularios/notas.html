@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTINCHIS</title>
+</head>
+<body>
+    <h1>Calculadora de notinchis</h1>
+    <form action="notas.php" method="post">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" minlength="3" maxlength="12" id="nombre" name="nombre" required>
+        </p>
+    
+        <p>
+            <label for="n1">Introduce la primera nota</label>
+            <input type="number" step="0.01" min="0" max="10" id="n1" name="notas[]" required>
+        </p>
+
+        <p>
+            <label for="n2">Introduce la segunda nota</label>
+            <input type="number" step="0.01" min="0" max="10" id="n2" name="notas[]" required>
+        </p>
+  
+        <p>
+            <label for="n3">Introduce la tercera nota</label>
+            <input type="number" step="0.01" min="0" max="10" id="n3" name="notas[]" required>
+        </p>
+
+        <button type="submit">Calcular media</button>
+    </form>
+</body>
+</html>
