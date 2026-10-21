@@ -14,7 +14,6 @@
     $email = "";
     $edad = false;
 
-
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $nombre = recibirTexto("nombre"); //recibir texto está recibiendo el valor del formulario
         $email = recibirTexto("email");
@@ -67,3 +66,4 @@
         <p><a href="formulario.html">Volver al formulario</a></p>
     </body>
 </html>
+!
