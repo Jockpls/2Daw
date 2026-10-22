@@ -25,3 +25,6 @@ console.log(document.body.children);
 console.log("¿Cuantos hijos tiene body?: ", document.body.children.length);
 
 
+console.log("Vamos a eliminar un elemento")
+//objeto.remove
+

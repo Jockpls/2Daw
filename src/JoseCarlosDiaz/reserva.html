@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reserva de taller</title>
+</head>
+<body>
+    <h1>Reserva de taller</h1>
+    <form action="procesar_reserva.php" method="post">
+        <p><label>Nombre completo:
+            <input type="text" name="nombre" required>
+        </label></p>
+        <p><label>Correo electrónico:
+            <input type="email" name="email" required>
+        </label></p>
+        <p><label>Número de plazas:
+            <input type="number" name="plazas"
+                   min="1" max="4" step="1" required>
+        </label></p>
+        <p><label>Taller:
+            <select name="taller" required>
+                <option value="">Selecciona un taller</option>
+                <option value="php">PHP</option>
+                <option value="web">Diseño web</option>
+                <option value="seguridad">Seguridad web</option>
+            </select>
+        </label></p>
+        <p><label>Observaciones (opcional):
+            <textarea name="observaciones" maxlength="200"></textarea>
+        </label></p>
+        <p><label>
+            <input type="checkbox" name="acepto" value="si" required>
+            Acepto las condiciones de la actividad
+        </label></p>
+        <button type="submit">Reservar</button>
+    </form>
+</body>
+</html>
