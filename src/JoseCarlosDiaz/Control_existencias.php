@@ -5,8 +5,6 @@ $productos = [
     ["nombre" => "Monitor", "precio" => 120.00, "stock" => 2],
     ["nombre" => "Cable USB", "precio" => 6.00, "stock" => 8]
 ];
-
-
 function calcularValor(array $productos): int{
     $acumulador = 0;
     foreach ($productos as $producto) {
