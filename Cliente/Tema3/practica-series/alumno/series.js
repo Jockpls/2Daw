@@ -85,15 +85,15 @@ function pintar(){
 
 //Actualizar el contador de series por ver en la página y en el titulo
 
-const pendientes = series.filter(s => s.vista === false).length;
-
-if(series.length === 0){
-  contador.textContent = "No hay series"
-} else{
-  contador.textContent = `Quedan ${pendientes} por ver de ${series.length}`;
-}
-document.title = `(${pendientes}) Series por ver`;
-}
+    const pendientes = series.filter(s => s.vista === false).length;
+    
+    if(series.length === 0){
+      contador.textContent = "No hay series"
+    } else{
+      contador.textContent = `Quedan ${pendientes} por ver de ${series.length}`;
+    }
+    document.title = `(${pendientes}) Series por ver`;
+  }
 pintar();
 
 //Añadimos series nuevas
