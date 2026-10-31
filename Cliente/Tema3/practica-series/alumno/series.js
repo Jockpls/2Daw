@@ -15,7 +15,7 @@ const lista = document.querySelector("#series");
 const botonAnadir = document.querySelector("#anadir");
 const inputTitulo = document.querySelector("#titulo");
 const contador = document.querySelector("#contador");
-
+const buscador = document.querySelector("#buscador");
 
 //Comprobar si hay tema guardado en memoria
 if(localStorage.getItem("tema") === "oscuro"){
@@ -113,4 +113,17 @@ botonAnadir.addEventListener("click", ()=>{
   }
 })
 
+//Filtramos peliculas
 
+buscador.addEventListener("input", ()=>{
+  const textoInput = buscador.value.toLowerCase();
+  for (serie of series){
+    const titulo = serie.querySelector(".titulo").textContent.toLowerCase();
+
+    if(titulo.includes(textoInput)){
+      serie.classList.remove("oculto");
+    } else {
+      serie.classList.add("oculto")
+    }
+  }
+})
