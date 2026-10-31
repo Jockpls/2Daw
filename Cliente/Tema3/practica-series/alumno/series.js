@@ -115,15 +115,17 @@ botonAnadir.addEventListener("click", ()=>{
 
 //Filtramos peliculas
 
-buscador.addEventListener("input", ()=>{
-  const textoInput = buscador.value.toLowerCase();
-  for (serie of series){
-    const titulo = serie.querySelector(".titulo").textContent.toLowerCase();
-
-    if(titulo.includes(textoInput)){
-      serie.classList.remove("oculto");
+function filtrar(){
+  const textoInput = buscador.value.toLowerCase(); //Recogemos el valor del input y lo pasamos a minúsculas
+  console.log("En el buscador está escrito: ", textoInput);
+  
+  for (const item of lista.querySelectorAll("li")){ //Debemos recorrer todos los li de la lista que ya tenemos cargada
+    if(item.querySelector(".titulo").textContent.toLowerCase().includes(textoInput) || textoInput === ""){ //Si incluye input o está vacío, mostramos las coincidencias
+      item.classList.remove("oculto");
     } else {
-      serie.classList.add("oculto")
+      item.classList.add("oculto"); //Si no coincide, lo ocultamos
     }
   }
-})
+}
+
+buscador.addEventListener("input", filtrar);
