@@ -1,7 +1,23 @@
 <?php
+function tema($campo): string
+{
+    if ($_POST[$campo] === "claro" || $_POST[$campo] === "oscuro") {
+        return $_POST[$campo];
+    } else {
+        return header("location: formulario.html");
+    }
+}
+function idioma($campo): string{
+    if ($_POST[$campo] === "en" || $_POST[$campo] === "es") {
+        return $_POST[$campo];
+    } else {
+        return header("location: formulario.html");
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tema = $_POST["tema"];
-    $idioma = $_POST["idioma"];
+    $tema = tema("tema");
+    $idioma = idioma("idioma");
 
     $options = [
         "expires" => time() + 604800, //Cuando caduca
@@ -15,7 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setcookie("tema", $tema, time() + 604800, "/", "", false, true);
     //Desde options solo tienes que especificar las que te interesen
     setcookie("idioma", $idioma, $options);
+    header("Location: ver.php");
+} else {
+    echo "Envío invalido";
+    header("Location: formulario.php");
 }
 
-header("Location: ver.php");
 ?>
