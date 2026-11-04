@@ -79,6 +79,15 @@ function pintar(){
         guardar();
         pintar();
     });
+
+
+    const texto = buscador.value.toLowerCase().trim();
+    //oculta si no contiene lo escrito
+
+  if(!serie.titulo.toLowerCase().trim().includes(texto)){
+    item.classList.add("oculto");
+  }
+
   item.append(nombre, boton_quitar)
   lista.append(item);
   }
@@ -111,21 +120,26 @@ botonAnadir.addEventListener("click", ()=>{
     
     inputTitulo.value = "";
   }
-})
+});
 
 //Filtramos peliculas
 
-function filtrar(){
-  const textoInput = buscador.value.toLowerCase(); //Recogemos el valor del input y lo pasamos a minúsculas
-  console.log("En el buscador está escrito: ", textoInput);
-  
-  for (const item of lista.querySelectorAll("li")){ //Debemos recorrer todos los li de la lista que ya tenemos cargada
-    if(item.querySelector(".titulo").textContent.toLowerCase().includes(textoInput) || textoInput === ""){ //Si incluye input o está vacío, mostramos las coincidencias
-      item.classList.remove("oculto");
-    } else {
-      item.classList.add("oculto"); //Si no coincide, lo ocultamos
-    }
-  }
-}
+//function filtrar(){
+//  const textoInput = buscador.value.toLowerCase(); //Recogemos el valor del input y lo pasamos a minúsculas
+//  console.log("En el buscador está escrito: ", textoInput);
+//  
+//  for (const item of lista.querySelectorAll("li")){ //Debemos recorrer todos los li de la lista que ya tenemos cargada
+//    if(item.querySelector(".titulo").textContent.toLowerCase().includes(textoInput) || textoInput === ""){ //Si incluye input o está vacío, mostramos las coincidencias
+//      item.classList.remove("oculto");
+//    } else {
+//      item.classList.add("oculto"); //Si no coincide, lo ocultamos
+//    }
+//  }
+//}
+//
+//buscador.addEventListener("input", filtrar);
 
-buscador.addEventListener("input", filtrar);
+//Con el código anterior al añadir una serie mientras estamos filtrando se rompe, por eso hay que volver a pintar
+//Para que funcione tendríamos que limpiar el input si hay algo dentro
+
+buscador.addEventListener("input", pintar);
