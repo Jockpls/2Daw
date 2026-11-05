@@ -11,11 +11,11 @@ session_start();
 <body>
 <h1>Carrinchi</h1>
 <h2>Cantidad de accesos hasta el momento:
-    <?php if($_SESSION["accesos"]){
-        $_SESSION["accesos"] = $_SESSION["accesos"] + 1;
+    <?php if(!isset($_SESSION["accesos"])){
+        $_SESSION["accesos"] = 1;
         echo $_SESSION["accesos"];
     }else{
-        $_SESSION["accesos"] = 1;
+        $_SESSION["accesos"] = $_SESSION["accesos"] + 1;
         echo $_SESSION["accesos"];
     }   ?></h2>
 </h2>
