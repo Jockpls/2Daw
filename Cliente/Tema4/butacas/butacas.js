@@ -1,3 +1,5 @@
+//Objeto Evento
+
 const comprar = document.querySelector("#comprar");
 const butacas = [...document.querySelectorAll(".butaca")];
 const aviso = document.querySelector("#aviso");
