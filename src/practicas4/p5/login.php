@@ -17,6 +17,10 @@
         <input type="password" id="passw" name="passw">
          <br><br>
 
+         <label for="recordar">Recordar Usuario</label>
+         <input type="checkbox" id="recordar" name="recordar" value="recordar">
+
+         <br><br>
          <input type="submit" value="acceder">
      </form>
 </body>
