@@ -15,6 +15,12 @@ const carta = [
 
 const listaCarta = document.querySelector("#listaCarta");
 const info = document.querySelector("#info");
+const buscador = document.querySelector("#buscador");
+const lineas = document.querySelector("#lineas");
+const totales = document.querySelector("#totales");
+const formulario = document.querySelector("#entrega");
+const campos = formulario.querySelectorAll("input, select");
+
 
 //Definimos las reglas del negocio
 const pedidoMinimo = 10;
@@ -24,8 +30,43 @@ const gastosEnvio = 2.5;
 //vamos a cargar el pedido
 
 const guardado = localStorage.getItem("cantidades");
-
 let cantidades = guardado === null ? carta.map(() => 0) : JSON.parse(guardado);
+
+//Función subtotal
+function subtotal(){
+  let suma = 0;
+  for (let i = 0; i < carta.length; i++){
+    suma = suma + carta[i].precio * cantidades[i];
+  }
+  return suma;
+}
+
+//función de calcular el fasto de envío
+
+function envio(){
+  if (subtotal() >= envioGratis){
+    return 0;
+  }
+  return gastosEnvio;
+}
+
+function comprobar(campo){
+  //El mensaje se escribe en el <span class=error....> de cada <p>
+  const parrafo = campo.closest("p");//Quien es el padre del input o select que recibe, que será un <p>
+  const error = parrafo.querySelector(".error");//Dentro de ESE párrafo, me da su span de error
+  if(campo.validity.valueMissing){
+    //en su span ponga "Este campo es obligacotio"
+    error.textContent = "Este campo es obligacotio";
+  }else if (campo.validity.patternMismatch && campo.id === "telefono") {
+    error.textContent = "El teléfono tiene 9 cifras y empieza por 6 o 7";
+  }else if (campo.validity.patternMismatch && campo.id === "cp") {
+    error.textContent = "Solo repartimos en Córdoba capital (140xx)";
+  } else {
+    error.textContent = "";
+  }
+}
+
+
 
 //Vamos a definir una función de guardar en LocalStorage 
 function guardar(){
@@ -43,6 +84,14 @@ function pintar(){
     const item = document.createElement("li");
     item.classList.add("plato");
     item.textContent = `${carta[i].nombre} - ${carta[i].precio.toFixed(2)}€ - Pedidos: ${cantidades[i]}`;
+
+
+    //Si este plato cumple con el filtro de buscar un plato
+    
+    if(!carta[i].nombre.toLowerCase().includes(buscador.value.toLowerCase())){
+      item.classList.add("oculto");
+
+    }
 
     const menos = document.createElement("button");
     menos.classList.add("menos");
@@ -80,9 +129,64 @@ function pintar(){
     //añadimos los li
     listaCarta.append(item);
 
-  }
-}
+    //Ahora pintamos la parte derecha del acumulativo del pedido 
+
+    }
+  for (const j of lineas.querySelectorAll("li")){
+    j.remove();
+    }
+  for (let i = 0; i < carta.length; i++){
+      if(cantidades[i] > 0){
+        const importe = carta[i].precio * cantidades[i];
+        const linea = document.createElement("li");
+        linea.textContent = `${cantidades[i]} X ${carta[i].nombre} - ${importe.toFixed(2)}€`;
+        lineas.append(linea);
+      }
+    }
+
+  if (subtotal() === 0){
+    totales.textContent="Todavía no has pedido nada"
+
+  } else {
+    //Pintamos los gastos
+    totales.textContent = `Subtotal: ${subtotal().toFixed(2)}€  \n` + 
+      `Envío: ${envio().toFixed(2)}€ \n ` +
+      `Total: ${(subtotal() + envio()).toFixed(2)}€`
+      }
+    }
+  
+
+
 pintar();
 
+//Definimos el evento del input de buscar
+
+buscador.addEventListener("input", ()=> {
+  pintar();
+})
+
+
+
+
+vaciar.addEventListener("click", ()=>{
+  if(subtotal() === 0){
+    return;
+  } 
+  if(!confirm("¿Vaciar el pedido?")){
+    return;
+  }
+  cantidades = carta.map(()=> 0);
+  guardar();
+  pintar();
+})
+
+//Validar el formulario
+//Definimos eventos a cada campo cuando pierda el foco que comrpuebe
+
+for (const campo of campos){
+  campo.addEventListener("blur", () => {
+    comprobar(campo);
+  })
+}
 
 

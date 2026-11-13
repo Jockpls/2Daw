@@ -41,7 +41,8 @@ class Libro {
 
 
     public function obtenerFicha(): string{
-        return "Titulo: " . $this->titulo . " Autor: " . $this->autor . " Prestado: " . $this->prestado ? "Prestado" : "Disponible";
+        return "Titulo: " . $this->titulo . " Autor: " . $this->autor . " Prestado: " . ($this->prestado ? "Prestado" : "Disponible");
+        //Hay que poner el operador ternario entre parentesis por preferencia de operadores, si no, evalua todo lo anterior como una condicion del operador
     }
 
 }
