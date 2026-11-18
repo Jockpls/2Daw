@@ -20,7 +20,7 @@ const lineas = document.querySelector("#lineas");
 const totales = document.querySelector("#totales");
 const formulario = document.querySelector("#entrega");
 const campos = formulario.querySelectorAll("input, select");
-
+const aviso = document.querySelector("#aviso");
 
 //Definimos las reglas del negocio
 const pedidoMinimo = 10;
@@ -185,8 +185,48 @@ vaciar.addEventListener("click", ()=>{
 
 for (const campo of campos){
   campo.addEventListener("blur", () => {
+
     comprobar(campo);
   })
 }
 
 
+for (const campo of campos){
+  campo.addEventListener("input", ()=>{
+    comprobar(campo);
+  })
+}
+
+//Vamos a enviar el pedido
+formulario.addEventListener("submit", (evento)=>{
+  //Que la página no recargue por defecto
+  evento.preventDefault();
+
+  //Las reglas que tiene que cumplir el pedido que no van con los campos
+  if(subtotal() === 0){
+    aviso.textContent = "Pedido vacío";
+    return;
+  }
+  if(subtotal() < pedidoMinimo){
+    aviso.textContent = `El pedido mínimo es de ${pedidoMinimo}€`;
+    return;
+  }
+  //Comprobar los campos del formulario
+  if(!formulario.checkValidity()){
+    aviso.textContent = `Hay datos de entrega por corregir`;
+    return;
+  }
+
+  //vamos a coger todos los datos del formulario de una vez 
+  const datos = Object.fromEntries(new FormData(formulario));
+  const total = (subtotal() + envio()).toFixed(2);
+  aviso.textContent = `Pedido enviado a nombre de ${datos.nombre}.` +
+  ` Llegará a las ${datos.hora} a ${datos.direccion}.` +
+  ` Total: ${total}`;
+
+  //Después de enviar de forma correcta, vaciamos todo el formulario.
+  cantidades = carta.map(() => 0);
+  guardar();
+  pintar();
+  formulario.reset();
+})
