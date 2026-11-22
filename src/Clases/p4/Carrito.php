@@ -9,42 +9,38 @@ class Carrito{
 
     public function add(Producto $producto, int $cantidad): bool{
         $codigo = $producto -> getCodigo();
+        $stockAlmacen = $producto -> getStock();
 
-        if($cantidad <= 0 || $cantidad > $producto->getStock()){
+        if ($cantidad <= 0 || $cantidad > $stockAlmacen){
             return false;
-        } else if (isset($this->lineas[$codigo])){
-            $producto->vender($cantidad);
-            $this->lineas[$codigo]['stock'] += $cantidad;
-            return true;
-        } else {
-            $producto->vender($cantidad);
-            $this->lineas[$codigo] = [
-                'codigo' => $codigo,
-                'stock' => $cantidad
+        }
+        
+        $cantidadActual = isset($this->lineas[$codigo]) ? $this->lineas[$codigo]['amount'] : 0;
+        if ($cantidadActual + $cantidad > $stockAlmacen){
+            return false;
+        }
+        $cantidadFinal = $cantidadActual + $cantidad;
+        $this->lineas[$codigo]= [
+                'producto' => $producto,
+                'amount' => $cantidadFinal
             ];
             return true;
-        }
     }
 
-    public function eliminar(Producto $producto, $cantidad): bool {
-        $codigo = $producto -> getCodigo();
-
-        if (isset($this->lineas[$codigo]) && $cantidad > 0 && $this->lineas[$codigo]['stock'] <= $cantidad) {
-            $producto->reponer($cantidad);
+    public function eliminar(string $codigo): bool {
+        if (isset($this->lineas[$codigo])){
             unset($this->lineas[$codigo]);
+            echo "se elimina";
             return true;
-        }else if ($cantidad > 0 && $this->lineas[$codigo]['stock'] > $cantidad) {
-            $producto->reponer($cantidad);
-            return true;
-        } else {
-            return false;
         }
+        echo "No se elminia";
+        return false;
     }
 
     public function contarUnidades(): int{
         $contador = 0;
         foreach ($this->lineas as $linea){
-            $contador += $linea['stock'];
+            $contador += $linea['amount'];
         }
         return $contador;
     }
@@ -52,7 +48,7 @@ class Carrito{
     public function calcularTotal(): int{
         $total = 0;
         foreach ($this->lineas as $linea){
-            $total += $linea['stock'];
+            $total += $linea['amount'] * $linea['producto']->getPrecio();
         }
         return $total;
     }

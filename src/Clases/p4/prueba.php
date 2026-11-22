@@ -26,4 +26,7 @@ print_r($carrito->add($lapiz, 0));
 echo "<br>";
 echo "Se elimina lapiz";
 echo "<br>";
-print_r($carrito->eliminar($lapiz, 99));
+print_r($carrito->eliminar('L01'));
+print_r($carrito->eliminar('L01'));
+print_r($carrito->eliminar('L01'));
+print_r($carrito->eliminar('L01'));
