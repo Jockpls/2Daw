@@ -48,5 +48,5 @@ final class EnvioUrgente extends EnvioNormal {
 }
 
 function imprimirEnvio(Envio $envio): void {
-    echo $envio->resumen() . "\n\n";
+    echo $envio->resumen() . "<br>";
 }

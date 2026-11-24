@@ -145,8 +145,7 @@ function pintar(){
     }
 
   if (subtotal() === 0){
-    totales.textContent="Todavía no has pedido nada"
-
+    totales.textContent= "Todavía no has pedido nada"
   } else {
     //Pintamos los gastos
     totales.textContent = `Subtotal: ${subtotal().toFixed(2)}€  \n` + 

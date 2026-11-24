@@ -22,7 +22,7 @@ class CanalMemoria implements CanalConHistorial, Reiniciable {
         return $this->mensajes;
     }
 
-    function reiniciar(): void {
+    public function reiniciar(): void {
         $this->mensajes = [];
     }
 }
@@ -33,14 +33,13 @@ class CanalPantalla implements Canal {
     }
 }
 
-class ServiciosAvisos{
-    private Canal $canal;
+class ServicioAvisos{
 
-    public function __construct(Canal $canal){
+    public function __construct(private Canal $canal){
         $this->canal = $canal;
     }
 
-    public function enviar(string $mensaje):string {
+    public function avisar(string $mensaje):string {
         return $this->canal->enviar($mensaje);
     }
 
