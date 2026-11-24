@@ -45,5 +45,8 @@ final class EnvioUrgente extends EnvioNormal {
     public function coste(): float {
         return parent::coste() + $this->recargo;
     }
+}
 
+function imprimirEnvio(Envio $envio): void {
+    echo $envio->resumen() . "\n\n";
 }

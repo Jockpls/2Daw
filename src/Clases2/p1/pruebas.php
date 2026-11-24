@@ -9,3 +9,9 @@ echo $envio2->resumen() . PHP_EOL;
 
 $envio3 = new EnvioUrgente("Valencia", 0, 5);
 echo $envio3->resumen() . PHP_EOL;
+
+$envios = [$envio1, $envio2, $envio3];
+
+foreach ($envios as $envio) {
+    imprimirEnvio($envio);
+}
