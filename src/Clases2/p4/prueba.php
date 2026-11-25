@@ -90,10 +90,18 @@ echo "<br>";
 echo "Mostrando d: ";
 echo "<br>";
 echo $d;
-
-foreach($a as $value){
-    echo $value -> nombre . PHP_EOL;
-    echo $value -> ciudad . PHP_EOL;
+echo "<br>";
+echo "<br>";
+echo 'Con foreach recorremos a: <br>';
+foreach($a as $value => $key){
+    echo $key;
+    echo '<br>';
+}
+echo "<br>";
+echo "<br>";
+echo 'Con foreach recorremos c: <br>';
+foreach($c as $value => $key){
+    echo $key;
     echo '<br>';
 }
 
@@ -102,3 +110,24 @@ echo "<br>";
 echo "\----------------------/";
 echo "<br>";
 
+$t1 = new Testigo("Paco");
+$t2 = new Testigo("Jose Carlos");
+$t3 = $t1;
+echo "<br>";
+
+$t1 = null;
+
+echo "<br>";
+print_r($t2->__toString() . " sigue en pie");
+echo "<br>";
+echo "<br>";
+echo "Se muestra t3 para ver si sigue en pie";
+echo "<br>";
+echo $t3->__toString();
+echo "<br>";
+$t1 = null;
+$t3 = null;
+echo "<br>";
+echo "Al finalizar el script se borra el testigo, aunque con null se borra el objeto, al seguir referenciado más alante, no se destruye, porque sigue compartiendo memoria con t3";
+
+echo 'Fin';

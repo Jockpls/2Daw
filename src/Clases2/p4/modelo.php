@@ -20,3 +20,16 @@ class Ficha extends Direccion{
     }
 
 }
+
+class Testigo {
+    public string $nombre;
+    public function __construct(string $nombre){
+        $this->nombre = $nombre;
+    }
+    public function __toString(){
+        return "$this->nombre";
+    }
+    public function __destruct(){
+        echo 'Testigo de ' . $this->nombre. ' destruido<br>';
+    }
+}
