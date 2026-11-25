@@ -20,8 +20,8 @@ body {
   padding: 0 1rem;
   font-size: 1.15rem;
   line-height: 1.6;
-  color: var(--tinta);
-  background: var(--papel);
+  color: rgb(0, 0, 0);
+  background: rgb(41, 40, 40);
 }
 
 /* El título lleva debajo la tira de los cuatro colores. */

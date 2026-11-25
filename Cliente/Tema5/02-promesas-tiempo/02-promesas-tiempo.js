@@ -25,6 +25,7 @@ tiempo.addEventListener("click", () =>{
 
     const [latitud, longitud] = coordenadas[ciudad.value];
     const url  = `https://api.open-meteo.com/v1/forecast?latitude=${latitud}&longitude=${longitud}&current=temperature_2m,wind_speed_10m`; //A la url le añadimos nuestras variables de latitud y longitud en los params
+    const urlDaily  = `https://api.open-meteo.com/v1/forecast?latitude=${latitud}&longitude=${longitud}&current=temperature_2m,wind_speed_10m,temperature_2m_max`; //A la url le añadimos nuestras variables de latitud y longitud en los params
 
     //Cuando es una petición con fetch tengo que tener 2 then MÍNIMO:
     //1 PARA LA RESPUESTA A LA QUE NO ACCEDO HASTA QUE LLEGA 
@@ -34,9 +35,15 @@ tiempo.addEventListener("click", () =>{
     fetch(url) //hago la petición
     .then((respuesta)=> respuesta.json())//lEEMOS EL JSON QUE NOS HA MANDADO EL SERVIDOR Y LO CONVERTIMOS EN UN OBJETO DE js, PARA PODER ACCEDER A LOS DATOS CON EL PUNTO 
     .then((datos) => {
-      console.log("Datos");
-      console.log(datos);
-      estado.textContent = `${ciudad.value}: ${datos.current.temperature_2m}ºC, y un viento de ${datos.current.wind_speed_10m} km/h`
+      fetch(urlDaily)
+      .then((response)=> response.json())
+      .then(data => {
+        console.log("Datos");
+        console.log(datos);
+        console.log("Data");
+        console.log(data);
+        estado.textContent = `${ciudad.value}: ${datos.current.temperature_2m}ºC, con una temperatura máxima de ${data.current.temperature_2m_max}ºC y un viento de ${datos.current.wind_speed_10m} km/h`
+      })
     })//Ese argumento serán los datos de la respuesta del fetch anterior
 
 })
