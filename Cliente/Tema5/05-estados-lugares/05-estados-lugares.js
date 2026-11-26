@@ -4,6 +4,7 @@ const nombre = document.querySelector("#nombre");
 const buscador = document.querySelector("#buscar");
 const lista = document.querySelector("#lista");
 const aviso = document.querySelector("#aviso");
+const tiempo = document.querySelector("#tiempo");
 
 let estado = "";
 let lugares = [];
@@ -49,14 +50,40 @@ async function buscar(){
 
         for (const lugar of lugares){
             const item = document.createElement("li")
+            item.dataset.latitude = lugar.latitude;
+            item.dataset.longitud = lugar.longitude;
             item.textContent = `${lugar.name} (${lugar.admin2})`;
             lista.append(item);
         }
-
-
     }
-
+    tiempo.textContent = "Pulsa un lugar para ver su tiempo";
 }
 
 
 buscador.addEventListener("click", buscar);
+
+
+
+lista.addEventListener("click", async (evento) => {
+    const item = evento.target.closest("li");
+    estado = "Cargando...";
+    const urlTiempo = `https://api.open-meteo.com/v1/forecast?latitude=${item.dataset.latitude}&longitude=${item.dataset.longitud}&current=temperature_2m,wind_speed_10m`;
+    try {
+        const respuesta = await fetch(urlTiempo);
+        
+        if (!respuesta.ok){
+            throw new Error(`Código: ${respuesta.status}`)
+        }
+        const datitos = await respuesta.json();
+        if(datitos === undefined){
+            estado = "Vacío";
+        } else {
+            tiempo.textContent = `El tiempo en ${item.textContent} es de ${datitos.current.temperature_2m}ºC con viento de ${datitos.current.wind_speed_10m}km/h`;
+        }
+
+    }catch (Error){
+        estado = "Error";
+        mensajeError = error.message;
+        }
+    }
+);

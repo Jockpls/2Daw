@@ -42,3 +42,10 @@ button:hover { background: var(--azul); color: #fff; }
 a { color: var(--magenta); }
 .caja { background: var(--naranja-suave); border: 2px dashed var(--naranja); padding: 1.2rem; margin-top: 1.2rem; border-radius: 10px; }
 code { background: #f2efe9; padding: .1em .35em; border-radius: 4px; font-size: .92em; }
+
+li {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 15px;
+}
